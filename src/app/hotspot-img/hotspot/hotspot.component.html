@@ -1,0 +1,35 @@
+<ng-container *ngIf="svgSize">
+  <ng-container *ngIf="!previewPoint; else previewTemplate">
+    <svg:polygon [attr.points]="coords | points" />
+    <svg:ellipse
+      *ngFor="let point of coords; index as i"
+      draggable
+      (drag)="handlePointDrag($event, point)"
+      (dragComplete)="handlePointDragComplete(point)"
+      [attr.cx]="point.x"
+      [attr.cy]="point.y"
+      [attr.rx]="svgSize.width > 0 ? 8 / svgSize.width : 0"
+      [attr.ry]="svgSize.height > 0 ? 8 / svgSize.height : 0"
+    />
+  </ng-container>
+  <ng-template #previewTemplate>
+    <svg:polygon [attr.points]="previewCoords() | points" />
+    <svg:ellipse
+      *ngFor="let point of coords; index as i"
+      draggable
+      (drag)="handlePointDrag($event, point)"
+      (dragComplete)="handlePointDragComplete(point)"
+      [attr.cx]="point.x"
+      [attr.cy]="point.y"
+      [attr.rx]="svgSize.width > 0 ? 8 / svgSize.width : 0"
+      [attr.ry]="svgSize.height > 0 ? 8 / svgSize.height : 0"
+    />
+    <svg:ellipse
+      class="preview"
+      [attr.cx]="previewPoint!.x"
+      [attr.cy]="previewPoint!.y"
+      [attr.rx]="svgSize.width > 0 ? 8 / svgSize.width : 0"
+      [attr.ry]="svgSize.height > 0 ? 8 / svgSize.height : 0"
+    />
+  </ng-template>
+</ng-container>

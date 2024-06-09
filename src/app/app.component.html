@@ -1,0 +1,33 @@
+<app-hotspot-img
+  [hotspots]="hotspots"
+  [editable]="true"
+  (hotspotsChange)="handleHotspotsChange($event)"
+  [(selectedHotspot)]="selectedHotspot"
+>
+  <img src="assets/cat.jpg" alt="Image" />
+</app-hotspot-img>
+
+<app-hotspot-img
+  [hotspots]="hotspots"
+  [editable]="false"
+  (hotspotClick)="clickEvents.push($event.data)"
+  (missedClick)="clickEvents.push('Missed ' + $event.count)"
+>
+  <img src="assets/cat.jpg" alt="Image" />
+</app-hotspot-img>
+
+<ul class="list">
+  <li
+    *ngFor="let hotspot of hotspots; let i = index"
+    [ngClass]="{ selected: hotspot === selectedHotspot }"
+    (click)="selectedHotspot = hotspot"
+  >
+    <div>{{ i + 1 }}</div>
+    <input type="text" [(ngModel)]="hotspot.data" />
+    <button (click)="deleteHotspot(hotspot)">Delete</button>
+  </li>
+</ul>
+
+<ul class="events">
+  <li *ngFor="let clickEvent of clickEvents">{{ clickEvent }} clicked!</li>
+</ul>

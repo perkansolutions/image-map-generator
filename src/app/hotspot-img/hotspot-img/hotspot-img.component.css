@@ -1,0 +1,38 @@
+:host {
+  --hotspot-color: red;
+  display: block;
+  overscroll-behavior: contain;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+svg.editable {
+  cursor: pointer;
+}
+
+:host ::ng-deep img {
+  user-select: none;
+  display: block;
+  pointer-events: none;
+}

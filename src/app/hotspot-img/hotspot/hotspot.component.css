@@ -1,0 +1,44 @@
+polygon {
+  fill: var(--hotspot-color);
+  fill-opacity: 0.35;
+  stroke: var(--hotspot-color);
+  stroke-opacity: 0.35;
+  stroke-width: 3px;
+  vector-effect: non-scaling-stroke;
+  transition: fill-opacity 0.1s;
+}
+
+polygon:hover {
+  fill-opacity: 0.4;
+  stroke-opacity: 0.4;
+}
+
+:host.hidden polygon,
+:host.hidden ellipse {
+  fill: transparent !important;
+  stroke: transparent !important;
+}
+
+:host.selected polygon {
+  stroke-width: 7px;
+  stroke-opacity: 0.45;
+}
+
+ellipse {
+  fill: var(--hotspot-color);
+  fill-opacity: 0.6;
+  stroke: var(--hotspot-color);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+  stroke-opacity: 0.8;
+  transition: stroke-width 0.1s;
+}
+
+ellipse:not(.preview):hover {
+  fill-opacity: 1;
+  stroke-width: 8px;
+}
+
+ellipse.preview {
+  fill-opacity: 0.6;
+}

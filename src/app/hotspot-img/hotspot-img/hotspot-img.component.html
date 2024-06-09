@@ -1,0 +1,32 @@
+<div class="wrapper" (waResizeObserver)="handleResize($event)">
+  <ng-content></ng-content>
+  <svg
+    #svg
+    viewBox="0 0 1 1"
+    preserveAspectRatio="none"
+    [ngClass]="{ editable: editable }"
+  >
+    <g
+      *ngFor="let hotspot of hotspots"
+      hotspot
+      draggable
+      [coords]="hotspot.coords"
+      (coordsChange)="handleHotspotCoordsChange($event, hotspot)"
+      [hidden]="!editable"
+      [selected]="hotspot === selectedHotspot"
+      [translate]="translations.get(hotspot)"
+      (click)="handleHotspotClick($event, hotspot)"
+      (drag)="handleHotspotDrag($event, hotspot)"
+      (dragComplete)="handleHotspotDragComplete(hotspot)"
+      [svgSize]="svgSize"
+    ></g>
+
+    <g
+      *ngIf="newHotspotCoords"
+      hotspot
+      [coords]="newHotspotCoords"
+      [previewPoint]="newHotspotPreviewPoint"
+      [svgSize]="svgSize"
+    ></g>
+  </svg>
+</div>
